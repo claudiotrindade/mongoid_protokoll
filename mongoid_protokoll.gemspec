@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = MongoidProtokoll::VERSION
   spec.authors       = ["Claudio Trindade"]
   spec.email         = ["claudiotrindade.cc@gmail.com"]
-  spec.summary       = ""
-  spec.description   = ""
-  spec.homepage      = ""
+  spec.summary          = "A simple Rails gem to create custom autoincrement Time base values to a database column. Is another version of 'gem protokoll' for mongoid. For more information access the link: https://github.com/celsodantas/protokoll"
+  spec.description      = "Rails 4 gem to enable creation of a custom autoincrement Time based string on a model defined by a pattern. ex. 20110001, 20110002, 20110003, 20120001, 20120002..." 
+  spec.homepage      = "https://github.com/claudiotrindade/mongoid_protokoll"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

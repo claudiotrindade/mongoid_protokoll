@@ -1,7 +1,10 @@
+require "mongoid_protokoll/models/custom_auto_increment"
+require "mongoid_protokoll/formater"
+
 module MongoidProtokoll
   class Counter
     def self.next(object, options)
-      element = Models::CustomAutoIncrement.find_or_create_by(model_name: object.class.to_s.underscore)
+      element = MongoidProtokoll::Models::CustomAutoIncrement.find_or_create_by(model_name: object.class.to_s.underscore)
 
       element.counter = options[:start] if outdated?(element, options) || element.counter == 0
       element.counter += 1
@@ -11,7 +14,7 @@ module MongoidProtokoll
 
       element.save!
 
-      Formater.new.format(element.counter, options)
+      MongoidProtokoll::Formater.new.format(element.counter, options)
     end
 
     private

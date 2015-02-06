@@ -6,7 +6,6 @@ module Mongoid
   module Protokoll
     extend ActiveSupport::Concern
     
-    
     module ClassMethods
       # Class method available in models
       #
@@ -16,6 +15,7 @@ module Mongoid
       #   end
       #
       def protokoll(column, _options = {})
+        field column, :type => String
         options = { :pattern       => "%Y%m#####",
                     :number_symbol => "#",
                     :column        => column,
@@ -25,13 +25,13 @@ module Mongoid
 
         # Defining custom method
         send :define_method, "reserve_#{options[:column]}!".to_sym do
-          self[column] = MongoidProtokoll::Counter.new.next(self, options)
+          self[column] = MongoidProtokoll::Counter.next(self, options)
         end
 
         # Signing before_create
         before_create do |record|
           unless record[column].present?
-            record[column] = MongoidProtokoll::Counter.new.next(self, options)
+            record[column] = MongoidProtokoll::Counter.next(self, options)
           end
         end
       end
